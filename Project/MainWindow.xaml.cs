@@ -26,13 +26,17 @@ namespace Project
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Recipe> recipes = new List<Recipe>();
         string path;
         string path1;
         string linc = "";
-
         public MainWindow()
         {
             InitializeComponent();
+            for (int i = 0; i < recipes.Count; i++)
+            {
+
+            }
             Bl.Items.Add("Перша страва");
             Bl.Items.Add("Друга страва");
             Bl.Items.Add("Салат");
