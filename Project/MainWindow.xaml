@@ -11,9 +11,11 @@
             <TextBox Name="name"></TextBox>
             <Rectangle Width="200" Height="100">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Borscht_served.jpg/220px-Borscht_served.jpg" x:Name="picture" Stretch="Uniform"/>
+                    <ImageBrush  x:Name="picture" Stretch="Uniform"/>
                 </Rectangle.Fill>
             </Rectangle>
+            <ComboBox x:Name="Bl"></ComboBox>
+            <TextBox x:Name="kyxna"></TextBox>
             <TextBox x:Name="recipe"></TextBox>
             <TextBox x:Name="desc"></TextBox>
             <Button Click="Button_Click">d</Button>
