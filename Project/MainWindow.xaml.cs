@@ -33,35 +33,74 @@ namespace Project
         public MainWindow()
         {
             InitializeComponent();
-            for (int i = 0; i < recipes.Count; i++)
-            {
-
-            }
-            Bl.Items.Add("Перша страва");
-            Bl.Items.Add("Друга страва");
-            Bl.Items.Add("Салат");
-            Bl.Items.Add("Соус");
-            Bl.Items.Add("Десерт");
-            Bl.Items.Add("Выпечка");
-            Bl.Items.Add("Закуски");
-            Bl.Items.Add("Напиток");
             path = System.IO.Path.GetFullPath(this.ToString());
             path= path.Remove(path.Length - 19);
+            List<string> direct = Directory.GetDirectories(path).ToList();
+            for(int i = 0; i < direct.Count; i++)
+            {
+                List<string> kyx = Directory.GetDirectories(direct[i]).ToList();
+                for (int j = 0; j < kyx.Count; j++)
+                {
+                    List<string> rec = Directory.GetFiles(kyx[j]).ToList();
+                    for(int k=0; k<rec.Count; k++)
+                    {
+                        Recipe recipe = new Recipe();
+                        recipe.Open1(rec[k]);
+                        recipes.Add(recipe);
+                    }
+                }
+            }
             path1 = System.IO.Path.GetFullPath(path + "\\Перша страва\\Украинская кухня\\Рецепт.txt");
-            Open();
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            SaveAt();
+            Open(path1);
         }
         public class Recipe
         {
-            public string TypeFood { get; set; }
-            public string KitchenName { get; set; }
-            public string FoodName { get; set; }
-            public string PhotoLink { get; set; }
-            public string Ingredients { get; set; }
-            public string Guide { get; set; }
+            public string TypeFood = "";
+            public string KitchenName = "";
+            public string FoodName = "";
+            public string PhotoLink = "";
+            public string Ingredients = "";
+            public string Guide = "";
+            public void Open1(string path)
+            {
+                StreamReader f = new StreamReader(path);
+                FoodName = f.ReadLine();
+                f.ReadLine();
+                string linc = "";
+                TypeFood = f.ReadLine();
+                f.ReadLine();
+                KitchenName = f.ReadLine();
+                f.ReadLine();
+                for (int i = 0; ; i++)
+                {
+                    string line = f.ReadLine();
+                    if (line != "")
+                    {
+                        linc += line;
+                    }
+                    else { break; }
+                }
+                PhotoLink = linc;
+                for (int i = 0; ; i++)
+                {
+                    string line = f.ReadLine();
+                    if (line != "")
+                    {
+                        Ingredients += line + "\n";
+                    }
+                    else { break; }
+                }
+                for (int i = 0; ; i++)
+                {
+                    string line = f.ReadLine();
+                    if (line != "")
+                    {
+                        Guide += line + "\n";
+                    }
+                    else { break; }
+                }
+                f.Close();
+            }
         }
         private void SaveAt()
         {
@@ -70,23 +109,18 @@ namespace Project
             if (saveFileDialog.ShowDialog() == DialogResult.HasValue)
                 return;
             string filename = saveFileDialog.FileName;
-            System.IO.File.WriteAllText(filename, $"{name.Text}\n\n{Bl.SelectedValue}\n\n{kyxna.Text}\n\n{linc}\n\n{recipe.Text}\n{desc.Text}");
+            System.IO.File.WriteAllText(filename, $"{name.Content}\n\n{Bl.Content}\n\n{kyxna.Content}\n\n{linc}\n\n{recipe.Text}\n{desc.Text}");
             MessageBox.Show("Файл сохранен");
         }
-        private void Open()
+        private void Open(string path)
         {
             StreamReader f = new StreamReader(path1);
-            name.Text = f.ReadLine();
+            name.Content = f.ReadLine();
             f.ReadLine();
             linc = "";
-            string ab = f.ReadLine();
-            for (int i = 0; i < Bl.Items.Count; i++)
-            {
-                if (Bl.Items[i].ToString() == ab)
-                    Bl.SelectedValue = Bl.Items[i];
-            }
+            Bl.Content = f.ReadLine();          
             f.ReadLine();
-            kyxna.Text = f.ReadLine();
+            kyxna.Content = f.ReadLine();
             f.ReadLine();
             for (int i = 0; ; i++)
             {
@@ -118,5 +152,6 @@ namespace Project
             }
             f.Close();
         }
+
     }
 }

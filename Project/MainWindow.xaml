@@ -5,20 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+    Title="Рецепт" Height="700" Width="711">
     <Grid>
-        <StackPanel>
-            <TextBox Name="name"></TextBox>
-            <Rectangle Width="200" Height="100">
-                <Rectangle.Fill>
-                    <ImageBrush  x:Name="picture" Stretch="Uniform"/>
-                </Rectangle.Fill>
-            </Rectangle>
-            <ComboBox x:Name="Bl"></ComboBox>
-            <TextBox x:Name="kyxna"></TextBox>
-            <TextBox x:Name="recipe"></TextBox>
-            <TextBox x:Name="desc"></TextBox>
-            <Button Click="Button_Click">d</Button>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="38"></RowDefinition>
+            <RowDefinition Height="215"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="215"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="101*"></ColumnDefinition>
+            <ColumnDefinition Width="99*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Name="name" Grid.ColumnSpan="3" Content="Назва вашого рецепту" HorizontalAlignment="Center" FontSize="25"></Label>
+        <Label Grid.Row="2" Content="Інгредієнти:" HorizontalAlignment="Center" FontSize="18"></Label>
+        <TextBox x:Name="recipe" Grid.Row="3" BorderBrush="WhiteSmoke" IsReadOnly="False" FontSize="13" Margin="5,0,5,5"></TextBox>
+        <Label Grid.Row="4" Grid.ColumnSpan="2" Content="Приготування" HorizontalAlignment="Center" FontSize="25"/>
+        <TextBox x:Name="desc"  Grid.Row="5" Grid.ColumnSpan="2" BorderBrush="WhiteSmoke" IsReadOnly="False" FontSize="13" Margin="5,5,5,5"></TextBox>
+        <Button Grid.Row="7" Grid.ColumnSpan="2" Height="30" Width="100" Content="На головну" FontSize="15"></Button>
+        <Rectangle Grid.Row="3" Grid.Column="1" Width="280" Height="200" Margin="30,20,40,30" >
+            <Rectangle.Fill>
+                <ImageBrush  x:Name="picture" Stretch="Uniform"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label x:Name="kyxna" Grid.Row="2" Grid.Column="1" Content="Назва кухні:" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="Bl"  Grid.Row="1" Grid.ColumnSpan="2" Content="Страва" HorizontalAlignment="Center" FontSize="18"/>
     </Grid>
 </Window>
