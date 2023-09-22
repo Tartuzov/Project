@@ -5,33 +5,103 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project"
         mc:Ignorable="d"
-    Title="Рецепт" Height="700" Width="711">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="35"></RowDefinition>
-            <RowDefinition Height="38"></RowDefinition>
-            <RowDefinition Height="215"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="215"></RowDefinition>
-            <RowDefinition Height="60"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="101*"></ColumnDefinition>
-            <ColumnDefinition Width="99*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Label Name="name" Grid.ColumnSpan="3" Content="Назва вашого рецепту" HorizontalAlignment="Center" FontSize="25"></Label>
-        <Label Grid.Row="2" Content="Інгредієнти:" HorizontalAlignment="Center" FontSize="18"></Label>
-        <TextBox x:Name="recipe" Grid.Row="3" BorderBrush="WhiteSmoke" IsReadOnly="False" FontSize="13" Margin="5,0,5,5"></TextBox>
-        <Label Grid.Row="4" Grid.ColumnSpan="2" Content="Приготування" HorizontalAlignment="Center" FontSize="25"/>
-        <TextBox x:Name="desc"  Grid.Row="5" Grid.ColumnSpan="2" BorderBrush="WhiteSmoke" IsReadOnly="False" FontSize="13" Margin="5,5,5,5"></TextBox>
-        <Button Grid.Row="7" Grid.ColumnSpan="2" Height="30" Width="100" Content="На головну" FontSize="15"></Button>
-        <Rectangle Grid.Row="3" Grid.Column="1" Width="280" Height="200" Margin="30,20,40,30" >
-            <Rectangle.Fill>
-                <ImageBrush  x:Name="picture" Stretch="Uniform"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <Label x:Name="kyxna" Grid.Row="2" Grid.Column="1" Content="Назва кухні:" HorizontalAlignment="Center" FontSize="18"/>
-        <Label x:Name="Bl"  Grid.Row="1" Grid.ColumnSpan="2" Content="Страва" HorizontalAlignment="Center" FontSize="18"/>
-    </Grid>
+    Title="Головне вікно" Name="main" Height="575" Width="800">
+    <StackPanel Name="sp" Orientation="Vertical" Background="Beige">
+        <Menu Name="menu" Height="50">
+            <MenuItem Header="Рецепти" Height="50" FontSize="18">
+                <MenuItem.Icon>
+                    <Image Source="catalog.png" Height="20"/>
+                </MenuItem.Icon>
+                <MenuItem Name="menu1" Header="Перші страви">
+                    <MenuItem.Icon>
+                        <Image Source="first.png" Height="15"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Другі страви">
+                    <MenuItem.Icon>
+                        <Image Source="second.png" Height="15"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Салати">
+                    <MenuItem.Icon>
+                        <Image Source="salat.png" Height="15" Width="15"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Закуски">
+                    <MenuItem.Icon>
+                        <Image Source="zakus.png" Height="30" Width="30"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Десерти">
+                    <MenuItem.Icon>
+                        <Image Source="desert.png" Height="16" Width="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Напої">
+                    <MenuItem.Icon>
+                        <Image Source="napitki.png" Height="16" Width="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Випічка">
+                    <MenuItem.Icon>
+                        <Image Source="vipichka.png" Height="18" Width="18"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Соуси">
+                    <MenuItem.Icon>
+                        <Image Source="sous.png" Height="18" Width="18"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Налаштування рецептів" Height="50" FontSize="18">
+                <MenuItem.Icon>
+                    <Image Source="settings.png" Height="16" Width="16"/>
+                </MenuItem.Icon>
+                <MenuItem Header="Додати рецепт">
+                    <MenuItem.Icon>
+                        <Image Source="add.png" Height="16" Width="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Змінити рецепт">
+                    <MenuItem.Icon>
+                        <Image Source="settings.png" Height="16" Width="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Видалити рецепт">
+                    <MenuItem.Icon>
+                        <Image Source="delete.png" Height="16" Width="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Знайти рецепт">
+                    <MenuItem.Icon>
+                        <Image Source="find.png" Height="16" Width="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Експортувати рецепт">
+                    <MenuItem.Icon>
+                        <Image Source="export.png" Height="16" Width="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Вихід"  Height="50" FontSize="18" >
+                <MenuItem.Icon>
+                    <Image Source="exit.png" Height="16" Width="16"/>
+                </MenuItem.Icon>
+            </MenuItem>
+        </Menu>
+        <Label Content="Безліч рецептів уже у нашій программі!" HorizontalAlignment="Center" FontSize="30" FontFamily="397-font"></Label>
+        <MediaElement LoadedBehavior="Play" Stretch="Fill" Name="video" >
+            <MediaElement.Triggers>
+                <EventTrigger RoutedEvent="MediaElement.Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <MediaTimeline Name="video1" Storyboard.TargetName="video" RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </MediaElement.Triggers>
+        </MediaElement>
+    </StackPanel>
 </Window>
